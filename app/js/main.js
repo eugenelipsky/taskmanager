@@ -9,7 +9,7 @@ let tasklist = {
 //CRUD
 
 function addTask(taskName, description, urgency, status) {
-    if (taskName !== null && description !== null && urgency >= -1 && urgency <= 1) {
+    if (taskName !== '' && description !== '' && urgency >= -1 && urgency <= 1) {
         tasklist[status].push({
             _id: generateUniqueId(),
             taskName: taskName,
@@ -64,30 +64,23 @@ let taskNameInput = document.querySelector('.task__add-name'),
 
 document.addEventListener('DOMContentLoaded', (e) => {
     addTaskButton.addEventListener('click', (e) => {
-        e.preventDefault()
-        addTask(taskNameInput.value, descrInput.value, urgencySelect.value, statusSelect.value)
-
+        e.preventDefault();
+        addTask(taskNameInput.value, descrInput.value, urgencySelect.value, statusSelect.value);
         console.log(tasklist);
+
         tasklist[statusSelect.value].map(item => {
             function changeUrgencyIcon() {
-                let iconUrl = '';
-                if (urgencySelect.value === '-1') {
-                    console.log(urgencySelect.value)
-                    iconUrl = "img/icons/arrow_down.svg"
-                } else if (urgencySelect.value === '0') {
-                    console.log(urgencySelect.value)
-                    iconUrl = "img/icons/arrow_right.svg"
-                } else if (urgencySelect.value === '1') {
-                    iconUrl = "img/icons/arrow_up.svg"
+                switch(urgencySelect.value) {
+                    case '-1':
+                        return "img/icons/arrow_down.svg";
+                    case '1':
+                        return "img/icons/arrow_up.svg";
+                    default:
+                        return "img/icons/arrow_right.svg";
                 }
-                return iconUrl
             }
 
             let statusValue = statusSelect.value;
-            let taskNameValue = taskNameInput.value;
-            let descValue = descrInput.value;
-            let urgencyValue = urgencySelect.value;
-
 
             let newTaskItemName = document.createElement('div')
             newTaskItemName.classList.add('task__item-name')
@@ -157,8 +150,4 @@ document.addEventListener('DOMContentLoaded', (e) => {
         taskNameInput.value = ''
         descrInput.value = ''
     })
-
-
 })
-
-
