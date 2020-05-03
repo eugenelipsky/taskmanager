@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task Manager</title>
+    <link href="https://fonts.googleapis.com/css?family=Manrope:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+</section>
+<section class="task">
+    <div class="container">
+        <div class="task__wrapper">
+            <form class="task__add">
+                <input type="text" class="task__add-name" placeholder="Task name">
+                <input type="text" class="task__add-descr" placeholder="Description">
+                <select name="urgency" class="task__add-urgency">
+                    <option value="1">High</option>
+                    <option value="0">Medium</option>
+                    <option value="-1">Low</option>
+                </select>
+                <select name="status" class="task__add-status">
+                    <option value="todo">To do</option>
+                    <option value="inProgress">In progress</option>
+                    <option value="done">Done</option>
+                </select>
+                <button type="submit" class="task__add-submit">Add task</button>
+            </form>
+        </div>
+        <div class="task__inner">
+            <div class="task__box todo__urgency">
+                <div class="task__box-title">To do</div>
+
+            </div>
+            <div class="task__box inprogress__urgency">
+                <div class="task__box-title">In progress</div>
+
+            </div>
+            <div class="task__box done__urgency">
+                <div class="task__box-title">Done</div>
+                <!--                <div class="task__item">-->
+                <!--                    <div class="task__item-top">-->
+                <!--                        <div class="task__item-name">-->
+                <!--                            Task name-->
+                <!--                        </div>-->
+                <!--                        <button class="task__item-edit"></button>-->
+                <!--                    </div>-->
+                <!--                    <div class="task__item-content">-->
+                <!--                        <div class="task__item-descr">-->
+                <!--                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at blanditiis deleniti-->
+                <!--                            doloremque eaque facere facilis-->
+                <!--                        </div>-->
+                <!--                        <img class="task__urgency-icon" src="img/icons/arrow_down.svg" width="16px" height="16px"-->
+                <!--                             alt="Status">-->
+                <!--                        <button class="task__item-delete"></button>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/main.js"></script>
+</body>
+</html>
