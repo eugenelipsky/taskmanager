@@ -16,7 +16,7 @@ function addTask(taskName, description, urgency, status) {
             desc: description,
             urgency: urgency,
             statusValue: status
-        });
+        })
     } else {
         alert('Fields are empty')
     }
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
         tasklist[statusSelect.value].map(item => {
             function changeUrgencyIcon() {
-                switch(urgencySelect.value) {
+                switch (urgencySelect.value) {
                     case '-1':
                         return "img/icons/arrow_down.svg";
                     case '1':
@@ -80,22 +80,75 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 }
             }
 
-            let statusValue = statusSelect.value;
+            let statusValue = statusSelect.value,
+                nameValue = taskNameInput.value,
+                descValue = descrInput.value
 
             let newTaskItemName = document.createElement('div')
             newTaskItemName.classList.add('task__item-name')
+            newTaskItemName.setAttribute('id', item._id)
             newTaskItemName.innerText = taskNameInput.value
 
             let newTaskDescr = document.createElement('div')
             newTaskDescr.classList.add('task__item-descr')
+            newTaskDescr.setAttribute('id', item._id)
             newTaskDescr.innerText = descrInput.value
 
             let newUrgencyIcon = document.createElement('img')
             newUrgencyIcon.classList.add('task__urgency-icon')
             newUrgencyIcon.setAttribute('src', changeUrgencyIcon())
 
+            let onEdit = document.createElement('div')
+            onEdit.classList.add('task__item-onedit')
+            onEdit.textContent = 'On edit'
+
             let newEditButton = document.createElement('button')
             newEditButton.classList.add('task__item-edit')
+            newEditButton.setAttribute('id', item._id)
+            newEditButton.setAttribute('data-status', item.statusValue)
+            newEditButton.setAttribute('data-name', item.taskName)
+            newEditButton.addEventListener('click', () => {
+                if (newEditButton.id === newTaskItem.getAttribute('uid')) {
+                    taskNameInput.value = item.taskName
+                    descrInput.value = item.desc
+                    urgencySelect.value = item.urgency
+                    statusSelect.value = item.statusValue
+                    newEditButton.style.display = 'none'
+                    onEdit.style.display = 'block'
+                    if(item._id === newEditButton.id) {
+                        let editButtonMain = document.createElement('button')
+                        editButtonMain.classList.add('task__edit-main')
+                        editButtonMain.textContent = 'Save'
+                        document.querySelector('form').appendChild(editButtonMain)
+                        document.querySelector('form').removeChild(addTaskButton)
+                        editButtonMain.addEventListener('click', (e) => {
+                            e.preventDefault()
+                            newEditButton.style.display = 'block'
+                            onEdit.style.display = 'none'
+                            document.querySelector('form').removeChild(editButtonMain)
+                            document.querySelector('form').appendChild(addTaskButton)
+
+                            editTask(item.taskName, newEditButton.dataset.status, taskNameInput.value, descrInput.value, urgencySelect.value)
+                            if (newEditButton.id === item._id) {
+                                newTaskItem.childNodes.forEach(item => {
+                                    item.childNodes.forEach(item => {
+                                        newTaskItemName.textContent = taskNameInput.value
+                                        newTaskDescr.textContent = descrInput.value
+                                        newUrgencyIcon.setAttribute('src', changeUrgencyIcon())
+                                    })
+                                });
+                            }
+
+                            // document.querySelector('.task__urgency-icon').setAttribute()
+
+
+                            taskNameInput.value = ''
+                            descrInput.value = ''
+                            console.log(tasklist)
+                        })
+                    }
+                }
+            });
 
             let newDeleteButton = document.createElement('button')
             newDeleteButton.classList.add('task__item-delete')
@@ -116,6 +169,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
             newTopArea.classList.add('task__item-top')
             newTopArea.appendChild(newTaskItemName)
             newTopArea.appendChild(newEditButton)
+            newTopArea.appendChild(onEdit)
 
             let newBottomArea = document.createElement('div')
             newBottomArea.classList.add('task__item-content')
