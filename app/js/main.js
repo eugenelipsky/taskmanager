@@ -188,9 +188,14 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 newDeleteButton.addEventListener('click', () => {
                     document.querySelectorAll('.task__item-delete').forEach(delButtons => {
                         if (delButtons.id === item._id) {
-                            deleteTask(newTaskItem.id, newDeleteButton.dataset.status);
-                            newTaskItem.remove()
-                            console.log(tasklist)
+                            let confirmDelete = confirm(`Do you want to delete ${item.taskName}?`)
+                            if (confirmDelete === true){
+                                deleteTask(newTaskItem.id, newDeleteButton.dataset.status);
+                                newTaskItem.remove()
+                                console.log(tasklist)
+                            } else {
+                                confirmDelete.cl
+                            }
                         }
                     })
                 })
