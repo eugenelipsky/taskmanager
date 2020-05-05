@@ -2,5 +2,5 @@
 Native JS Task Manager + HTML, SCSS
 Without external libs and plugins.
 
-#Demo
+# Demo
 https://eugenelipsky.github.io/spa/taskmanager/
