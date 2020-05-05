@@ -1,3 +1,14 @@
+@supports (-webkit-touch-callout: none) {
+  .task__item-edit {
+    background-repeat: no-repeat;
+    background-size: contain;
+ }
+  .task__item-delete{
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
 @media (max-width: 800px) {
   .task__inner {
     flex-wrap: wrap;
@@ -61,6 +72,10 @@
   .task__wrapper {
     .task__add {
       .task__add-submit {
+        margin-left: 0;
+        width: 100%;
+      }
+      .task__edit-main {
         margin-left: 0;
         width: 100%;
       }
