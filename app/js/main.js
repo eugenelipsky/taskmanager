@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                             newEditButton.dataset.status = statusSelect.value
                                             item.statusValue = statusSelect.value
                                             newTaskItem.style.backgroundColor = 'rgba(255, 0, 0, 0.2)'
-                                            newTaskItem.style.borderBottom = '3px solid rgba(255, 0, 0, .5)'
+                                            newTaskItem.style.borderBottom = '3px solid rgba(255, 0, 0, 0.2)'
                                             break;
                                         case 'inProgress':
                                             newTaskItem.parentNode.removeChild(newTaskItem)
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                             newEditButton.dataset.status = statusSelect.value
                                             item.statusValue = statusSelect.value
                                             newTaskItem.style.backgroundColor = 'rgba(255, 247, 0, 0.2)'
-                                            newTaskItem.style.borderBottom = '3px solid rgba(255, 247, 0, .5)'
+                                            newTaskItem.style.borderBottom = '3px solid rgba(251, 255, 0, 0.2)'
                                             break;
                                         case 'done':
                                             newTaskItem.parentNode.removeChild(newTaskItem)
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                             newEditButton.dataset.status = statusSelect.value
                                             item.statusValue = statusSelect.value
                                             newTaskItem.style.backgroundColor = 'rgba(4, 255, 0, 0.2)'
-                                            newTaskItem.style.borderBottom = '3px solid rgba(4, 255, 0, .5)'
+                                            newTaskItem.style.borderBottom = '3px solid rgba(4, 255, 0, 0.2)'
                                             break;
                                     }
                                     newTaskItem.childNodes.forEach((item) => {
@@ -201,6 +201,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 console.log(tasklist)
                             } 
                         }
+                        taskNameInput.value = ''
+                        descrInput.value = ''
+                        document.querySelector('.task__edit-main').remove()
+                        document.querySelector('form').appendChild(addTaskButton)
                     })
                 })
 
@@ -225,16 +229,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 switch (newTaskItem.dataset.status) {
                     case 'todo':
                         newTaskItem.style.backgroundColor = 'rgba(255, 0, 0, 0.2)'
-                        newTaskItem.style.borderBottom = '3px solid rgba(255, 0, 0, .5)'
+                        newTaskItem.style.borderBottom = '3px solid rgba(255, 0, 0, 0.2)'
                         break;
                     case 'inProgress':
                         newTaskItem.style.backgroundColor = 'rgba(255, 247, 0, 0.2)'
-                        newTaskItem.style.borderBottom = '3px solid rgba(255, 247, 0, .5)'
+                        newTaskItem.style.borderBottom = '3px solid rgba(251, 255, 0, 0.2)'
 
                         break;
                     case 'done':
                         newTaskItem.style.backgroundColor = 'rgba(4, 255, 0, 0.2)'
-                        newTaskItem.style.borderBottom = '3px solid rgba(4, 255, 0, .5)'
+                        newTaskItem.style.borderBottom = '3px solid rgba(4, 255, 0, 0.2)'
                         break;
                 }
                 newTaskItem.appendChild(newTopArea)
